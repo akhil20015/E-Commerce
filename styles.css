@@ -499,4 +499,10 @@ body {
   font-size: 25px;
   padding-left: 20px;
 }
+#close{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: #222;
+}
 }
