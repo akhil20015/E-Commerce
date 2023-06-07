@@ -75,6 +75,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1;
 }
 #navbar {
     display: flex;
@@ -86,7 +87,7 @@ body {
 #navbar li{
     list-style: none;
     padding: 0 20px;
-    /* position: relative; */
+    position: relative;
 }
 #navbar li a{
     text-decoration: none;
@@ -100,8 +101,8 @@ body {
 #navbar li a:hover,
 #navbar li a.active{
     color: #088178;
-    border-bottom: 2px solid;
-    border-image: linear-gradient(to left, transparent, #088178 100%, transparent 10%)1;
+    /* border-bottom: 2px solid; */
+    border-image: linear-gradient(to left, transparent, #088178 100%)1;
 }
 #navbar li a.active::after,
 #navbar li a:hover::after{
@@ -123,7 +124,32 @@ body {
 #close{
   display: none;
 }
-
+#lg-bag label{
+  margin-left: 10px;
+  background-color: #08817976;
+  padding: 5px 10px;
+  /* display: none; */
+  transition: .3s all;
+}
+/* #cart-badge::after{
+  content: "";
+  display: none;
+  line-height: 20px;
+  height: 20px;
+  width: 30px;
+  padding: 1px;
+  position: absolute;
+  border-radius: 5px;
+  border-radius: 50% 25% 50% 25%;
+  z-index: -1;
+  top: -10px;
+  right: -5px;
+  font-size: 15px;
+  background-color: #08817976;
+  text-align: center;
+  border: 1px solid #088179a1;
+  transition: .3s all;
+} */
 
 #hero{
     background-image: url(imgs/hero4.png);
@@ -223,23 +249,29 @@ body {
 
 #product1{
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
+}
+.pro-container{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  flex-wrap: wrap;
 }
 #product1 .pro{
   width: 23%;
   min-width: 250px;
-  padding: 10px 12px;
+  padding: 10px 10px;
   border: 1px solid #cce7d0;
   border-radius: 10%;
   cursor: pointer;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 20px 20px 30px 30px rgba(0, 0, 0, 0.02);
   margin: 15px 0;
   transition: 0.5s ease;
   position: relative;
-  z-index: -1;
+  /* z-index: -1; */
 }
 #product1 .pro:hover{
-  box-shadow: 20px 20px 30px rgb(255, 0, 0);
+  box-shadow: 15px 15px 20px 10px rgba(0, 0, 0,0.06);
 }
 #product1 .pro img{
   width: 100%;
@@ -247,7 +279,7 @@ body {
 }
 #product1 .pro .des{
   text-align: start;
-  padding: 10px 0;
+  padding: 10px 15px;
 }
 #product1 .pro .des span{
   color: #606063;
@@ -262,6 +294,9 @@ body {
   font-size: 12px;
   color: rgb(243, 181, 25);
 }
+#product1 .pro .des i.fa-gray {
+  color: rgb(229 229 229);
+}
 #product1 .pro .des h4{
   padding-top: 5px;
   font-size: 15px;
@@ -269,24 +304,22 @@ body {
   color: #088178;
 }
 #product1 .pro .cart{
-  width: 40px;
+  width: 60px;
   height: 40px;
   line-height: 40px;
-  border-radius: 50%;
-  background-color: #e8f6ea;
+  /* border-radius: 50%; */
+  /* background-color: #e8f6ea; */
   /* font-weight: 500; */
   color: #088178;
-  border: 1px solid #cce7d0;
+  border: 2px solid #cce7d0;
   position: absolute;
   bottom: 20px;
   right: 10px;
 }
-.pro-container{
-  display: flex;
-  justify-content: space-between;
-  padding-top: 20px;
-  flex-wrap: wrap;
+#product1 .pro .cart:hover{
+  background-color: #e8f6ea;
 }
+
 
 #banner{
   display: flex;
@@ -523,13 +556,63 @@ body {
   margin-right: 10px;
 }
 
-
-
-
-
-
-
-
+#prodetails{
+  display: flex;
+  justify-content: space-between;
+}
+#prodetails .single-pro-img{
+  width: 40%;
+}
+.small-img-group{
+  display: flex;
+  justify-content: space-between
+}
+.small-img-col{
+  flex-basis: 24%;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.proimg-details{
+  width: 55%;
+  margin-top: 30px;
+  /* padding-top: 30px; */
+}
+.proimg-details h4{
+  margin-top: 30px;
+  letter-spacing: 2px;
+}
+.proimg-details h3{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.proimg-details select{
+  width: fit-content;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  outline: none;
+}
+.proimg-details select option{
+  background-color: #08817978;
+  /* color: #fff; */
+  font-weight: 500;
+}
+.proimg-details input{
+  width:20%;
+  max-width: 80px;
+  text-align: center;
+  padding: 10px;
+  height: 40px;outline: none;
+}
+.proimg-details button{
+  padding: 10px 20px;
+  border: none;
+  background-color: #088178;
+  border-radius: 4px;
+  color: #fff;
+  height: 40px;
+  margin-left: 15px;
+  cursor: pointer;
+}
 
 
 
