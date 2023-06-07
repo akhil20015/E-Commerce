@@ -1,7 +1,7 @@
 const nav = document.getElementById('navbar');
 
 const verNavbar = ()=>{
-    nav.classList.add('active');
+    nav.classList.toggle('active');
 }
 
 const closeNavbar = ()=>{
