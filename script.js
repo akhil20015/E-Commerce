@@ -1,5 +1,13 @@
-const nav = document.getElementById('navbar');
+import data from './product.json' assert {type: 'json'};
 
+sessionStorage.setItem("products", JSON.stringify(data));
+let val = sessionStorage.getItem("products");
+let products = JSON.parse(val);
+console.log(products);
+
+
+// NAVBAR HAMBURGER MENU
+const nav = document.getElementById('navbar');
 const verNavbar = ()=>{
     nav.classList.toggle('active');
 }
@@ -15,111 +23,58 @@ const closeNavbar = ()=>{
 //     main.setAttribute('src','imgs/products/f4.jpg');
 // }
 
+function Productcards() {
+    const card = document.getElementById('pro-cont');
+    for(let item in data){
 
-// const badge = document.getElementById('cart-badge');
-// const btn = document.getElementById('cart-btn');
-// let count=0;
-
-// btn.addEventListener('click', ()=>{
-//     count++;
-//     // badge.style.display= "inline";
-//     badge.innerHTML = count;
-// });
-
-let shirts = [
-    {
-        id: 1,
-        name: 'T-shirt',
-        brand: 'adidas',
-        ratings: 5,
-        price: 1200,
-        imageUrl: 'imgs/products/f1.jpg'
-    },
-    {
-        id: 2,
-        name: 'T-shirt',
-        brand: 'Puma',
-        ratings: 5,
-        price: 600,
-        imageUrl: 'imgs/products/f2.jpg'
-    },
-    {
-        id: 3,
-        name: 'T-shirt',
-        brand: 'Puma',
-        ratings: 5,
-        price: 160,
-        imageUrl: 'imgs/products/f3.jpg'
-    },
-    {
-        id: 4,
-        name: 'T-shirt',
-        brand: 'Puma',
-        ratings: 5,
-        price: 900,
-        imageUrl: 'imgs/products/f4.jpg'
-    },
-];
-
-
-function initShoppingItems() {
-    // for(let item of shirts) {
-    //     let itemElem = document.createElement("div");
-    //     itemElem.classList.add('pro');
-        
-    //     let itemImg = document.createElement("span");
-    //     itemImg.innerText = item.brand;
-
-    //     itemElem.appendChild(itemImg);
-
-    //     let shirtElement = `
-    //     <img src="${item.imageUrl}" alt="">
-    //     <div class="des">
-    //         <span>${item.brand}</span>
-    //         <h5>${item.name}</h5>
-    //         <div class="star">
-    //             <i class="fas ${item.ratings >= 1 ? 'fa-star' : 'fa-gray'}"></i>
-    //             <i class="fas ${item.ratings >= 2 ? 'fa-star' : 'fa-gray'}"></i>
-    //             <i class="fas ${item.ratings >= 3 ? 'fa-star' : 'fa-gray'}"></i>
-    //             <i class="fas ${item.ratings >= 4 ? 'fa-star' : 'fa-gray'}"></i>
-    //             <i class="fas ${item.ratings == 5 ? 'fa-star' : 'fa-gray'}"></i>
-    //         </div>
-    //         <h4>Rs ${item.price}</h4>
-    //     </div>
-    //     <a href="#" onClick=addShirtToCart(${item.id})><i class="fa-sharp fa-solid fa-cart-shopping cart"></i></a>
-    // `;
-    // console.log(itemElem)
-    // itemElem.append(shirtElement);
-    // document.getElementById('product1').appendChild(itemElem);
-    // }
-    
-    const card = document.getElementsByClassName('pro-container');
-
-    for(let item of shirts){
         let cardElement = `
         <div class="pro">
-            <img src="${item.imageUrl}" alt="">
+            <img src="${data[item].imageUrl}" alt="">
             <div class="des">
-                <span>${item.brand}</span>
-                <h5>${item.name}</h5>
+                <span>${data[item].brand}</span>
+                <h5>${data[item].name}</h5>
                 <div class="star">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star ${data[item].ratings >= 1 ? 'fa-gold' : 'fa-gray'}"></i>
+                    <i class="fas fa-star ${data[item].ratings >= 2 ? 'fa-gold' : 'fa-gray'}"></i>
+                    <i class="fas fa-star ${data[item].ratings >= 3 ? 'fa-gold' : 'fa-gray'}"></i>
+                    <i class="fas fa-star ${data[item].ratings >= 4 ? 'fa-gold' : 'fa-gray'}"></i>
+                    <i class="fas fa-star ${data[item].ratings == 5 ? 'fa-gold' : 'fa-gray'}"></i>
                 </div>
-            <h4>${item.price}</h4>
+            <h4>${data[item].price}</h4>
             </div>
-            <a class="cart-btn"><i class="fa-sharp fa-solid fa-cart-shopping cart"></i></a>
+            <a><i id="${data[item].id}" class="fa-sharp fa-solid fa-cart-shopping cart"></i></a>
         </div>`;
-
-        card.innerHTML = cardElement;
-        console.log(card.innerHTML);
+        card.innerHTML += cardElement;
     }
 }
+Productcards();
 
-initShoppingItems();
+
+const badge = document.getElementById('cart-badge');
+let quantity = [];
+data.forEach(e =>{
+    const shopBtn = document.getElementById(e.id);
+    shopBtn.addEventListener('click', ele =>{
+        quantity.push(ele.target.id);
+        let count=quantity.length;
+        badge.innerText = count;
+        console.log(quantity);
+        // sessionStorage.setItem("counter",quantity);
+    });
+});
+
+let shoppingCart = sessionStorage.getItem("counter");
+// console.log(shoppingCart);
+// sessionStorage.removeItem("quantites")
+// sessionStorage.setItem("quantites",shoppingCart);
+
+// console.log(shopBtn);
+// shopBtn.addEventListener('click', (e)=>{
+//     console.log(e);
+//     count++;
+//     badge.innerText = count;
+
+// });
 
 
 

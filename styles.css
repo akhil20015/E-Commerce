@@ -125,10 +125,17 @@ body {
   display: none;
 }
 #lg-bag label{
+    /* display: none; */
   margin-left: 10px;
-  background-color: #08817976;
-  padding: 5px 10px;
-  /* display: none; */
+  background-color: #088179;
+  padding: 2px 8px;
+  top: -10px;
+  right: 5px;
+  color: #fff;
+  border-radius: 50% 25% ;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
   transition: .3s all;
 }
 /* #cart-badge::after{
@@ -292,11 +299,14 @@ body {
 }
 #product1 .pro .des i{
   font-size: 12px;
+}
+.fa-gold{
   color: rgb(243, 181, 25);
 }
-#product1 .pro .des i.fa-gray {
-  color: rgb(229 229 229);
+.fa-gray {
+  color: rgba(195, 194, 194, 0.673);
 }
+
 #product1 .pro .des h4{
   padding-top: 5px;
   font-size: 15px;
