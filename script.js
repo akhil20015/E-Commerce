@@ -19,6 +19,15 @@ close.addEventListener('click', ()=>{
     nav.classList.remove('active');
 });
 
+
+
+// document.getElementsByClassName('close2')[0].addEventListener('click', () => {
+//     // document.getElementsByTagName('body')[0].style.overflow = "visible";
+//     // document.getElementsByClassName('overlay')[0].style.display = "none";
+//     // document.getElementById('blur').style.display="none";
+//     console.log("hi");
+// });
+
 //  FUNCTION NOT BEING CALLED IN ONCLICK ATTRIBUTE
 // const verNavbar = ()=>{
 
@@ -52,7 +61,7 @@ function Productcards() {
                     <i class="fas fa-star ${val.ratings >= 4 ? 'fa-gold' : 'fa-gray'}"></i>
                     <i class="fas fa-star ${val.ratings == 5 ? 'fa-gold' : 'fa-gray'}"></i>
                 </div>
-            <h4>${val.price}</h4>
+            <h4>Rs ${val.price}</h4>
             </div>
             <a><i id="${val.id}" class="fa-sharp fa-solid fa-cart-shopping cart"></i></a>
         </div>`;
@@ -61,17 +70,35 @@ function Productcards() {
 }
 Productcards();
 
-
+let qtob = [];
 const cart = ()=> {
     const badge = document.getElementById('cart-badge');
     let quantity = [];
-    let count=0;
+ 
     data.forEach(e =>{
         const shopBtn = document.getElementById(e.id);
         shopBtn.addEventListener('click', ele =>{
                 quantity.push(ele.target.id);
-                count=quantity.length;
-                badge.innerText = count;
+
+                console.log(qtob);
+                if(qtob.length == 0)
+                {
+                    qtob.push({id:ele.target.id,qty:1});
+                }
+                else{
+                    qtob.forEach((val , id) => {
+                       if(!(val.id == ele.target.id))
+                       {
+                        qtob.push({id:ele.target.id,qty:1});
+                        // break;
+                       }
+                       else{
+                        val.qty+= 1;
+                       }
+                    });
+                }
+                // console.log(quantity);
+                badge.innerText = quantity.length;
                 sessionStorage.setItem("counter",JSON.stringify(quantity));  
                 // badge.style.display = "flex";
                 // console.log(quantity); 
@@ -83,11 +110,12 @@ const cart = ()=> {
     // // return proIds;
     // displayCart(proIds);
 };cart();
+console.log(qtob);
 
 const shpCart = document.getElementById('shop');
 const checkout = document.getElementById('shoppingCart');
 
-shpCart.addEventListener('click',()=>{
+shpCart.addEventListener('click',(e)=>{
     let items = sessionStorage.getItem("products");
     let x = JSON.parse(items);
 
@@ -100,20 +128,27 @@ shpCart.addEventListener('click',()=>{
     //     return arr;
     // });
     // console.log(redund);
-   
+
+    console.log(arr)
     let unique = [];
-    arr.forEach((id,key)=>{
+    let qty=[];
+    arr.forEach(( id, key ) => {
         // console.log(key);
-        let qty=0;
-        if(!unique.includes(id)){
+        if(!unique.includes(id) & qty.includes !=0) {
             unique.push(id);
-            qty++;
+            qty[id]=1;
+        } else{
+            unique.forEach( key2 => {
+                if(unique[key2] == key )
+                {
+                    qty[id]++;
+                }
+            });
         }
-        else{
-            qty++;
-        }
+        console.log(unique);
+        console.log(qty);
        x.forEach(prod =>{
-        console.log(typeof unique[0]);
+        // console.log(typeof unique[0]);
         let uniquenum = unique.map(Number);
         // if(prod.id == id)
             if(prod.id == uniquenum[key])
@@ -131,10 +166,10 @@ shpCart.addEventListener('click',()=>{
                                 <i class="fas fa-star ${prod.ratings >= 4 ? 'fa-gold' : 'fa-gray'}"></i>
                                 <i class="fas fa-star ${prod.ratings == 5 ? 'fa-gold' : 'fa-gray'}"></i>
                             </div>
-                            <h4>${prod.price}</h4>
+                            <h4>Rs ${prod.price}</h4>
                         </div>
                         <div class="func"> 
-                            <h5>${qty}</h5>
+                            <h5>${qty[id]}</h5>
                             <h3>Remove</h3>
                             <h3>Buy</h3>
                         </div>
@@ -146,7 +181,6 @@ shpCart.addEventListener('click',()=>{
     document.getElementsByTagName('body')[0].style.overflow = "hidden";
     document.getElementsByClassName('overlay')[0].style.display = "block";
     document.getElementById('blur').style.display="block";
-
     // console.log(products);
 });
 

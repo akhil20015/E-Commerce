@@ -1,9 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Spartan", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -151,8 +150,28 @@ body {
   /* backdrop-filter: blur(8px); */
   display: none;
   overflow-y: auto;
-  background: linear-gradient(140deg, #69bab5,#024d48) ;
-
+  background: linear-gradient(140deg, #8bece5e1,#0c6961ec) ;
+  border-radius: 20px;
+  border: 2px solid #cbd4d3e1;
+}
+.overlay .header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e5f4f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.overlay #close2{
+  cursor: pointer;
+  font-size: 50px;
+}
+.deactive
+{
+  display: none;
 }
 
 #blur{
