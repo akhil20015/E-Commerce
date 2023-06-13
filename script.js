@@ -1,32 +1,21 @@
 import data from './product.json' assert {type: 'json'};
-
 sessionStorage.setItem("products", JSON.stringify(data));
-let val = sessionStorage.getItem("products");
-let products = JSON.parse(val);
-console.log(products);
 
 
 // NAVBAR HAMBURGER MENU
-const nav = document.getElementById('navbar');
-const hamBur = document.getElementById('bar');
-const close = document.getElementById('close');
+const navBar = document.getElementById('navbar');
+const hamBurMenu = document.getElementById('bar');
+const closeBtn = document.getElementById('close');
 
-hamBur.addEventListener('click', ()=>{
-    nav.classList.toggle('active');
+hamBurMenu.addEventListener('click', ()=>{
+    navBar.classList.toggle('active');
 });
 
-close.addEventListener('click', ()=>{
-    nav.classList.remove('active');
+closeBtn.addEventListener('click', ()=>{
+    navBar.classList.remove('active');
 });
 
 
-
-// document.getElementsByClassName('close2')[0].addEventListener('click', () => {
-//     // document.getElementsByTagName('body')[0].style.overflow = "visible";
-//     // document.getElementsByClassName('overlay')[0].style.display = "none";
-//     // document.getElementById('blur').style.display="none";
-//     console.log("hi");
-// });
 
 //  FUNCTION NOT BEING CALLED IN ONCLICK ATTRIBUTE
 // const verNavbar = ()=>{
@@ -38,12 +27,12 @@ close.addEventListener('click', ()=>{
   
 
 
-
 // let main = document.getElementById('main-img');
 
 // let change = ()=>{
 //     main.setAttribute('src','imgs/products/f4.jpg');
 // }
+
 
 function Productcards() {
     const card = document.getElementById('pro-cont');
@@ -70,11 +59,11 @@ function Productcards() {
 }
 Productcards();
 
+
 let qtob = [];
 const cart = ()=> {
     const badge = document.getElementById('cart-badge');
     let quantity = [];
- 
     data.forEach(e =>{
         const shopBtn = document.getElementById(e.id);
         shopBtn.addEventListener('click', ele =>{
@@ -86,76 +75,58 @@ const cart = ()=> {
                     qtob.push({id:ele.target.id,qty:1});
                 }
                 else{
-                    qtob.forEach((val , id) => {
-                       if(!(val.id == ele.target.id))
+                    let searchVal = search(ele.target.id);
+                    console.log(searchVal);
+                    let vall= searchVal[0];
+                    let indes = searchVal[1];
+                    
+                    console.log(indes);
+                    console.log(vall)
+                       if(vall == 0)
                        {
                         qtob.push({id:ele.target.id,qty:1});
-                        // break;
                        }
                        else{
-                        val.qty+= 1;
+                        qtob[indes].qty+= 1;
                        }
-                    });
                 }
-                // console.log(quantity);
                 badge.innerText = quantity.length;
-                sessionStorage.setItem("counter",JSON.stringify(quantity));  
-                // badge.style.display = "flex";
-                // console.log(quantity); 
+                sessionStorage.setItem("counter",JSON.stringify(quantity));
+                sessionStorage.setItem("quantity", JSON.stringify(qtob));
+                badge.style.display = "block";
         });
-        // badge.style.display = "none";
     });
-    // let valu = sessionStorage.getItem("counter");
-    // let proIds = JSON.parse(valu);
-    // // return proIds;
-    // displayCart(proIds);
 };cart();
-console.log(qtob);
+
+const search = index => {
+    let val=0,val2=0;
+    qtob.forEach((value, ide) => {
+        if(index == value.id){
+            val = 1;
+            val2 = ide;
+        }
+    });
+    return [val, val2];
+};
+
 
 const shpCart = document.getElementById('shop');
 const checkout = document.getElementById('shoppingCart');
 
-shpCart.addEventListener('click',(e)=>{
+shpCart.addEventListener('click',()=>{
     let items = sessionStorage.getItem("products");
-    let x = JSON.parse(items);
+    let productItems = JSON.parse(items);
 
-    let val = sessionStorage.getItem("counter");
-    let proIds = JSON.parse(val);
-    let arr = Object.values(proIds);
+    let z =sessionStorage.getItem("quantity");
+    let qty1 = JSON.parse(z);
 
-    // let redund = arr.filter(arr =>{
-        
-    //     return arr;
-    // });
-    // console.log(redund);
-
-    console.log(arr)
-    let unique = [];
-    let qty=[];
-    arr.forEach(( id, key ) => {
-        // console.log(key);
-        if(!unique.includes(id) & qty.includes !=0) {
-            unique.push(id);
-            qty[id]=1;
-        } else{
-            unique.forEach( key2 => {
-                if(unique[key2] == key )
-                {
-                    qty[id]++;
-                }
-            });
-        }
-        console.log(unique);
-        console.log(qty);
-       x.forEach(prod =>{
-        // console.log(typeof unique[0]);
-        let uniquenum = unique.map(Number);
-        // if(prod.id == id)
-            if(prod.id == uniquenum[key])
+    qty1.forEach( val => {
+        productItems.forEach(prod =>{
+            if(val.id == prod.id )
             {
                 let cartItems = `
                 <div class="prodDetails">
-                        <img src="${prod.imageUrl}" alt="">
+                    <img src="${prod.imageUrl}" alt="">
                         <div class="des">
                             <span>${prod.brand}</span>
                             <h5>${prod.name}</h5>
@@ -169,59 +140,17 @@ shpCart.addEventListener('click',(e)=>{
                             <h4>Rs ${prod.price}</h4>
                         </div>
                         <div class="func"> 
-                            <h5>${qty[id]}</h5>
+                            <h5>${val.qty}</h5>
                             <h3>Remove</h3>
                             <h3>Buy</h3>
                         </div>
-                    </div>`;
-                    checkout.innerHTML += cartItems;
+                </div>`;
+                checkout.innerHTML += cartItems;
             }
-       });
+        });
     });
     document.getElementsByTagName('body')[0].style.overflow = "hidden";
     document.getElementsByClassName('overlay')[0].style.display = "block";
     document.getElementById('blur').style.display="block";
-    // console.log(products);
 });
 
-
-
-
-let shoppingCart = sessionStorage.getItem("counter");
-// console.log(shoppingCart);
-// sessionStorage.removeItem("quantites")
-// sessionStorage.setItem("quantites",shoppingCart);
-
-
-
-// console.log(shopBtn);
-// shopBtn.addEventListener('click', (e)=>{
-//     console.log(e);
-//     count++;
-//     badge.innerText = count;
-
-// });
-
-
-
-
-
-function getShirt(shirtId) {
-    let shirt = shirts.find(s=> s.id == shirtId);
-
-}
-
-function addShirtToCart(shirtId) {
-    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) ?? [];
-
-    let alreadyAdded = cartItems.findIndex(cart=> cart.id == shirtId );
-
-    if(alreadyAdded > -1) {
-        alreadyAdded.quantity += 1;
-    } else {
-        let newItem = { dressId: shirtId, quantity: 1};
-        cartItems.push(newItem);
-    }
-
-    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
-}

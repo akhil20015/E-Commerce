@@ -7,6 +7,7 @@
 
 html {
   scroll-behavior: smooth;
+
 }
 
 /* Global Styles */
@@ -38,6 +39,21 @@ p {
   color: #465b52;
   margin: 15px 0 20px 0;
 }
+
+/* ::-webkit-scrollbar{
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb{
+  width: 8px;
+  border-radius: 10px;
+  
+  background: #088178;
+} */
+
 
 .section-p1 {
   padding: 40px 80px;
@@ -124,7 +140,7 @@ body {
   display: none;
 }
 #cart-badge {
-  /* display: none; */
+  display: none;
   margin-left: 10px;
   background-color: #088179;
   padding: 2px 8px;
@@ -152,14 +168,15 @@ body {
   overflow-y: auto;
   background: linear-gradient(140deg, #8bece5e1,#0c6961ec) ;
   border-radius: 20px;
-  border: 2px solid #cbd4d3e1;
+  /* border: 2px solid #E3E6F3;; */
+  box-shadow: 10px 10px #1a1a1a;
 }
 .overlay .header{
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #e5f4f3;
+  background-color: #E3E6F3;;
   display: flex;
   align-items: center;
   justify-content: space-between;
