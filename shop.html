@@ -7,7 +7,7 @@
     <title>E-commerce</title>
     <script src="https://kit.fontawesome.com/4730190c6a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="script.js" async></script>
+
 </head>
 <body>
     <section id="header">
@@ -19,8 +19,8 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="lg-bag"><a id="shop"><i class="fa-solid fa-bag-shopping fa-2xl"></i></a><label id="cart-badge"></label></li>
-                <a href="#" id="close"><i class="fa-solid fa-xmark fa-2xl"></i></a>
+                <li id="lg-bag"><a id="shop"><i class="fa-solid fa-bag-shopping fa-2xl"></i></a><label id="cart-badge">0</label></li>
+                <a href="#" id="close" ><i class="fa-solid fa-xmark fa-2xl"></i></a>
             </ul>
         </div>
         <div id="mobile">
@@ -37,6 +37,21 @@
             <h2>My Cart</h2>
             <i id="close2" class="fa-solid fa-xmark fa-2xl"></i>
         </div>
+            <!-- <div class="pro">
+                <img src="imgs/products/f2.jpg" alt="">
+                <div class="des">
+                    <span>puma</span>
+                    <h5>T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Rs 600</h4>
+                </div>
+            </div> -->
     </div>
    
 
@@ -68,7 +83,7 @@
         </div>
     </section>
 
-    <footer id="footer" class="section-p1">
+    <footer id="footer" onclick="foo()" class="section-p1">
         <div class="col">
             <img class="logo" src="imgs/logo.png" alt="logo">
             <h4>Contact</h4>
@@ -81,7 +96,7 @@
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-twitter"></i>
                     <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-youtube"></i>
+                    <i onclick="pro()" class="fa-brands fa-youtube"></i>
                 </div>
             </div>
         </div>
@@ -114,5 +129,10 @@
         </div>
     </footer>
 
+
 </body>
 </html>
+<script>
+    let x;
+</script>
+<script  src="script.js" type="module" async></script>

@@ -183,12 +183,9 @@ body {
   padding: 10px 20px;
 }
 .overlay #close2{
+  z-index: 99;
   cursor: pointer;
-  font-size: 50px;
-}
-.deactive
-{
-  display: none;
+  /* font-size: 50px; */
 }
 
 #blur{
@@ -792,6 +789,15 @@ body {
   width: 70%;
 }
 }
+
+/* .overlay .pro{
+  display: flex;
+}
+.overlay .pro img{
+  width: 40%;
+} */
+
+
 
 
 @media (max-width: 477px){

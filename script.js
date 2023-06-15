@@ -6,15 +6,24 @@ sessionStorage.setItem("products", JSON.stringify(data));
 const navBar = document.getElementById('navbar');
 const hamBurMenu = document.getElementById('bar');
 const closeBtn = document.getElementById('close');
+const closeBtn2 = document.getElementById('close2');
+const remove = document.querySelectorAll(".remove");
 
 hamBurMenu.addEventListener('click', ()=>{
-    navBar.classList.toggle('active');
+    navBar.classList.add('active');
 });
 
 closeBtn.addEventListener('click', ()=>{
     navBar.classList.remove('active');
 });
 
+closeBtn2.addEventListener('click', ()=>{
+    alert('hi');
+});
+
+// remove.addEventListener('click', () => {
+
+//  });
 
 
 //  FUNCTION NOT BEING CALLED IN ONCLICK ATTRIBUTE
@@ -26,12 +35,18 @@ closeBtn.addEventListener('click', ()=>{
 // }
   
 
+// document.getElementsByTagName('body')[0].style.overflow = "auto";
+// document.getElementsByClassName('overlay')[0].style.display = "none";
+// document.getElementById('blur').style.display="none";
+
+
 
 // let main = document.getElementById('main-img');
 
 // let change = ()=>{
 //     main.setAttribute('src','imgs/products/f4.jpg');
 // }
+
 
 
 function Productcards() {
@@ -68,7 +83,6 @@ const cart = ()=> {
         const shopBtn = document.getElementById(e.id);
         shopBtn.addEventListener('click', ele =>{
                 quantity.push(ele.target.id);
-
                 console.log(qtob);
                 if(qtob.length == 0)
                 {
@@ -76,12 +90,8 @@ const cart = ()=> {
                 }
                 else{
                     let searchVal = search(ele.target.id);
-                    console.log(searchVal);
                     let vall= searchVal[0];
                     let indes = searchVal[1];
-                    
-                    console.log(indes);
-                    console.log(vall)
                        if(vall == 0)
                        {
                         qtob.push({id:ele.target.id,qty:1});
@@ -91,7 +101,6 @@ const cart = ()=> {
                        }
                 }
                 badge.innerText = quantity.length;
-                sessionStorage.setItem("counter",JSON.stringify(quantity));
                 sessionStorage.setItem("quantity", JSON.stringify(qtob));
                 badge.style.display = "block";
         });
@@ -141,7 +150,7 @@ shpCart.addEventListener('click',()=>{
                         </div>
                         <div class="func"> 
                             <h5>${val.qty}</h5>
-                            <h3>Remove</h3>
+                            <h3 class="remove">Remove</h3>
                             <h3>Buy</h3>
                         </div>
                 </div>`;
